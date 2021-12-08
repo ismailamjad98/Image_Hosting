@@ -202,6 +202,7 @@ class UserController extends Controller
             //call a helper function to decode user id
             $userID = DecodeUser($request);
             $userupdate = User::all()->where('id', $id)->first();
+
             if ($userupdate->email_verified_at != null) {
                 //message on Successfully
                 if ($id == $userID) {
@@ -234,7 +235,7 @@ class UserController extends Controller
                         'message' => 'You are not Authorized',
                     ], 404);
                 }
-            }else {
+            } else {
                 return response([
                     'message' => 'An email has been sent with instructions to activate your account.Try checking your junk or spam filters.',
                     'Error' => 'Please Verify your Account First'
