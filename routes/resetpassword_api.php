@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccessImageController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Friend_Request;
-
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\UploadImageCotroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +15,6 @@ use App\Http\Controllers\Friend_Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post("forget_password", [ResetPasswordController::class, "forgetPassword"]);
+Route::post("reset_password/{token}/{email}", [ResetPasswordController::class, "resetPassword"]);

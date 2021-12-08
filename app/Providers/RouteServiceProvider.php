@@ -49,6 +49,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(function ($router) {
                     // require base_path('routes/api.php');
                     require base_path('routes/user_api.php');
+                    require base_path('routes/image_api.php');
+                    require base_path('routes/resetpassword_api.php');
                 });
 
             Route::middleware('web')

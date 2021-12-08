@@ -21,14 +21,15 @@ use App\Http\Controllers\UploadImageCotroller;
 |
 */
 
-//User Routes
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
-Route::get('emailVerify/{token}/{email}', [UserController::class, 'EmailVerify']);
 
-//User Routes with middleware
+Route::post('/upload_image', [UploadImageCotroller::class, 'uploadImage']);
+Route::post('/delete_image/{id}', [UploadImageCotroller::class, 'deleteImage']);
+Route::post('/my_images', [UploadImageCotroller::class, 'myImages']);
+Route::post('/search/{image}', [UploadImageCotroller::class, 'searchImage']);
+
+//Image Routes with middleware
 Route::middleware(['token'])->group(function () {
     //User Routes
-    Route::post('/profile/update/{id}', [UserController::class, 'update']);
-    Route::post('/logout', [UserController::class, 'logout']);
+    Route::post('/image_permission', [AccessImageController::class, 'givePermission']);
+    Route::get('/view_image', [AccessImageController::class, 'ViewImage']);
 });
