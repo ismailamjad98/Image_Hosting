@@ -5,33 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\UploadImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Jorenvh\Share\ShareFacade;
 
 class UploadImageCotroller extends Controller
 {
-    //
     public function uploadImage(Request $request)
     {
-
         $request->validate([
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'status' => 'required'
         ]);
-
-        // dd('dfs');
         if ($image = $request->file('image')) {
             //make a path to store image
-            $destinationPath = 'Upload_Images/';
+            $destinationPath = 'E:/ImageHosting-Copy/public/Upload_Images/';
             //change the image name for no duplication of same name
-            $upload = $image->getClientOriginalName();
+            $upload = time() . $image->getClientOriginalName();
             //store file in a provided path
             $image->move($destinationPath, $upload);
         }
-
         //call a helper function to decode user id
         $userID = DecodeUser($request);
         //create a shareable link
-        $link = 'E:/image_hosting/public/Upload_Images/' . $image->getClientOriginalName();
-
+        $link = $destinationPath . time() .$image->getClientOriginalName();
         //if user is logged in get UserId
         if (isset($userID)) {
             UploadImage::create([
@@ -103,11 +98,22 @@ class UploadImageCotroller extends Controller
     {
         $image_name = $request->image;
 
-        $image = UploadImage::where('image', 'LIKE', '%' . $image_name . '%')->orWhere('link', 'LIKE', '%' . $image_name . '%')->orWhere('created_at', 'LIKE', '%' . $image_name . '%')->orWhere('status', 'LIKE', '%' . $image_name . '%')->get();
+        $image = UploadImage::where('status','public')->where('image', 'LIKE', '%' . $image_name . '%')->orWhere('link', 'LIKE', '%' . $image_name . '%')->orWhere('created_at', 'LIKE', '%' . $image_name . '%')->orWhere('status', 'LIKE', '%' . $image_name . '%')->get();
         if (count($image) > 0)
             return response(['Images' => $image], 200);
         else {
             return response(['Images' => 'No Details found. Try to search again !'], 200);
         }
+    }
+
+    public function linkAccess(Request $request)
+    {
+        //call a helper function to decode user id
+        $userID = DecodeUser($request);
+        $images = UploadImage::all()->where('user_id', $userID);
+
+        $request->link;
+
+
     }
 }
