@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ForgetPasswordMail;
-use App\Models\ResetPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Throwable;
 
 use Firebase\JWT\JWT;
-use App\Mail\Sendmail;
-use App\Models\PasswordForget;
 use App\Models\PasswordReset;
-use App\Models\ResetPasswordModel;
 use App\Services\createToken;
 use Illuminate\Support\Facades\Mail;
 

@@ -1,14 +1,7 @@
 <?php
 
-use App\Http\Controllers\AccessImageController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Friend_Request;
-use App\Http\Controllers\ResetController;
-use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\UploadImageCotroller;
 
 /*
 |--------------------------------------------------------------------------

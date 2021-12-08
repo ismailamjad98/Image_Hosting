@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Sendmail;
 use App\Models\AccessImage;
 use App\Models\UploadImage;
 use App\Models\User;
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 use Illuminate\Http\Request;
 
 class AccessImageController extends Controller

@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\AccessImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\UploadImageCotroller;
 
 /*
 |--------------------------------------------------------------------------

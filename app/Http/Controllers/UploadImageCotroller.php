@@ -105,15 +105,6 @@ class UploadImageCotroller extends Controller
             return response(['Images' => 'No Details found. Try to search again !'], 200);
         }
     }
-
-    public function linkAccess(Request $request)
-    {
-        //call a helper function to decode user id
-        $userID = DecodeUser($request);
-        $images = UploadImage::all()->where('user_id', $userID);
-
-        $request->link;
-
-
-    }
 }
+
+
